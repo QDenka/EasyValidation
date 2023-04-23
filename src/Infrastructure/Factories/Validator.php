@@ -1,7 +1,8 @@
 <?php
 
-namespace QDenka\EasyValidation\Infrastructure;
+namespace QDenka\EasyValidation\Infrastructure\Factories;
 
+use QDenka\EasyValidation\Application\Validators\ValidatorFactoryInterface;
 use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
 use QDenka\EasyValidation\Domain\Date\DateValidator;
 use QDenka\EasyValidation\Domain\Email\EmailValidator;
@@ -13,7 +14,7 @@ use QDenka\EasyValidation\Domain\Url\UrlValidator;
  *
  * @package QDenka\EasyValidation\Infrastructure
  */
-class Validator
+class Validator implements ValidatorFactoryInterface
 {
     private const VALIDATOR_MAP = [
         'email' => EmailValidator::class,
