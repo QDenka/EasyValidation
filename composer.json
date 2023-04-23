@@ -1,0 +1,29 @@
+{
+    "name": "qdenka/easyvalidation",
+    "type": "library",
+    "description": "EasyValidation - a package for simple and fast data validation, including checking for the correctness of email, URL, numbers, dates, etc.",
+    "keywords": ["validation", "email", "url", "number", "date"],
+    "homepage": "https://github.com/qdenka/easyvalidation",
+    "authors": [
+        {
+            "name": "Denis",
+            "email": "denis@kaban.dev"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "QDenka\\EasyValidation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "QDenka\\EasyValidation\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}
