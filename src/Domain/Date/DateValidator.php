@@ -1,22 +1,21 @@
 <?php
-
 namespace QDenka\EasyValidation\Domain\Date;
 
 use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
 
 /**
- * Class DateValidator
- *
- * @package QDenka\EasyValidation\Domain\Date
+ * Validates dates in a given format (default YYYY-MM-DD).
  */
 class DateValidator implements ValidatorInterface
 {
-    /**
-     * The date format
-     *
-     * @var string
-     */
     private string $format = 'Y-m-d';
+
+    public function __construct(?string $format = null)
+    {
+        if ($format) {
+            $this->format = $format;
+        }
+    }
 
     /**
      * Validate the given date value
@@ -26,17 +25,7 @@ class DateValidator implements ValidatorInterface
      */
     public function validate(string $value): bool
     {
-        $dateTime = \DateTime::createFromFormat($this->format, $value);
-
-        return $dateTime && $dateTime->format($this->format) === $value;
-    }
-
-    /**
-     * @param string $format
-     * @return void
-     */
-    public function setFormat(string $format): void
-    {
-        $this->format = $format;
+        $dt = \DateTime::createFromFormat($this->format, $value);
+        return $dt && $dt->format($this->format) === $value;
     }
 }

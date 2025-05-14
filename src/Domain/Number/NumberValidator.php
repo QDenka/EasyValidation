@@ -17,7 +17,7 @@ class NumberValidator implements ValidatorInterface
      * @param mixed $value
      * @return bool
      */
-    public function validate(mixed $value): bool
+    public function validate(string $value): bool
     {
         return is_numeric($value);
     }
