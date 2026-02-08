@@ -65,14 +65,14 @@ Use `ValidatorFactory` to retrieve any validator by its type key:
 ```php
 use QDenka\EasyValidation\Application\Validators\ValidatorFactory;
 
-\$types = ['email','google_email','disposable_email','url','number','date','ip','uuid','json','base64','phone'];
-foreach (\$types as \$type) {
-    \$validator = ValidatorFactory::create(\$type);
-    \$value = 'test_value_for_' . \$type;
-    if (\$validator && \$validator->validate(\$value)) {
-        echo "[\$type] valid\n";
+$types = ['email','google_email','disposable_email','url','number','date','ip','uuid','json','base64','phone'];
+foreach ($types as $type) {
+    $validator = ValidatorFactory::create($type);
+    $value = 'test_value_for_' . $type;
+    if ($validator && $validator->validate($value)) {
+        echo "[$type] valid\n";
     } else {
-        echo "[\$type] invalid\n";
+        echo "[$type] invalid\n";
     }
 }
 ```
@@ -92,7 +92,7 @@ if (Validator::isGoogleMail('user@gmail.com')) {
     echo "It's a Gmail address";
 }
 
-if (!Validator::isDisposableEmail('temp@mailinator.com')) {
+if (Validator::isDisposableEmail('temp@mailinator.com')) {
     echo "Disposable email detected";
 }
 
@@ -115,7 +115,7 @@ Validator::isValidPhone('+1234567890');
 | ------------------ | ---------------------- | ------------------------------------- |
 | `email`            | `isValidEmail()`       | RFC-compliant email                   |
 | `google_email`     | `isGoogleMail()`       | Gmail & Googlemail domains            |
-| `disposable_email` | `!isDisposableEmail()` | Blacklisted disposable domains        |
+| `disposable_email` | `isDisposableEmail()`  | Blacklisted disposable domains        |
 | `url`              | `isValidUrl()`         | HTTP/HTTPS URLs                       |
 | `number`           | `isValidNumber()`      | Numeric values                        |
 | `date`             | `isValidDate()`        | Date in `Y-m-d` (configurable format) |
@@ -150,8 +150,8 @@ Ensure all domains are lowercase.
 To add a new validator:
 
 1. Implement `ValidatorInterface` in `src/Domain/YourType/YourValidator.php`.
-2. Add your class to `VALIDATOR_MAP` in `src/Infrastructure/Factories/Validator.php`.
-3. (Optional) Add a static helper in the same class.
+2. Register your class in `ValidatorFactory` (`src/Application/Validators/ValidatorFactory.php`).
+3. (Optional) Add a static helper in `Validator` facade (`src/Infrastructure/Factories/Validator.php`).
 4. Write tests under `tests/` following existing patterns.
 
 ---
