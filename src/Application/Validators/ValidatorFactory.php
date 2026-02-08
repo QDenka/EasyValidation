@@ -26,7 +26,7 @@ class ValidatorFactory implements ValidatorFactoryInterface
             case 'google_email':
                 return new GoogleMailValidator();
             case 'disposable_email':
-                $provider = new FileDisposableEmailDomainProvider(__DIR__ . '/../../config/disposable_domains.php');
+                $provider = new FileDisposableEmailDomainProvider(__DIR__ . '/../../../config/disposable_domains.php');
                 return new DisposableEmailValidator($provider);
             case 'date':
                 return new DateValidator();
