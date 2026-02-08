@@ -1,11 +1,13 @@
 <?php
 
-namespace QDenka\EasyValidation\Application\Validators;
+namespace QDenka\EasyValidation\Domain\Contracts;
 
 /**
  * Interface ValidatorInterface
  *
- * @package QDenka\EasyValidation\Application\Validators
+ * Core domain contract that all validators must implement.
+ *
+ * @package QDenka\EasyValidation\Domain\Contracts
  */
 interface ValidatorInterface
 {

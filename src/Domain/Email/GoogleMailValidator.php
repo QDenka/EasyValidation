@@ -1,7 +1,7 @@
 <?php
 namespace QDenka\EasyValidation\Domain\Email;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Checks that email is valid *and* uses Gmail or Googlemail domain.

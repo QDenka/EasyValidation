@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Ip;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Validates IPv4 and IPv6 addresses.

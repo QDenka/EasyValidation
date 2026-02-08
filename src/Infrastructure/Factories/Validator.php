@@ -2,44 +2,18 @@
 
 namespace QDenka\EasyValidation\Infrastructure\Factories;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorFactoryInterface;
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
-use QDenka\EasyValidation\Domain\Date\DateValidator;
-use QDenka\EasyValidation\Domain\Email\EmailValidator;
-use QDenka\EasyValidation\Domain\Email\GoogleMailValidator;
-use QDenka\EasyValidation\Domain\Email\DisposableEmailValidator;
-use QDenka\EasyValidation\Infrastructure\Email\FileDisposableEmailDomainProvider;
-use QDenka\EasyValidation\Domain\Number\NumberValidator;
-use QDenka\EasyValidation\Domain\Url\UrlValidator;
-use QDenka\EasyValidation\Domain\Ip\IpValidator;
-use QDenka\EasyValidation\Domain\Uuid\UuidValidator;
-use QDenka\EasyValidation\Domain\Json\JsonValidator;
-use QDenka\EasyValidation\Domain\Base64\Base64Validator;
-use QDenka\EasyValidation\Domain\Phone\PhoneNumberValidator;
+use QDenka\EasyValidation\Application\Validators\ValidatorFactory;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Class Validator
  *
- * Provides static helpers and implements a factory for all built-in validators.
+ * Static facade that delegates all creation to ValidatorFactory.
  *
  * @package QDenka\EasyValidation\Infrastructure\Factories
  */
-class Validator implements ValidatorFactoryInterface
+class Validator
 {
-    private const VALIDATOR_MAP = [
-        'email'             => EmailValidator::class,
-        'google_email'      => GoogleMailValidator::class,
-        'disposable_email'  => DisposableEmailValidator::class,
-        'url'               => UrlValidator::class,
-        'number'            => NumberValidator::class,
-        'date'              => DateValidator::class,
-        'ip'                => IpValidator::class,
-        'uuid'              => UuidValidator::class,
-        'json'              => JsonValidator::class,
-        'base64'            => Base64Validator::class,
-        'phone'             => PhoneNumberValidator::class,
-    ];
-
     public static function isValidEmail(string $value): bool
     {
         return self::validate('email', $value);
@@ -55,7 +29,7 @@ class Validator implements ValidatorFactoryInterface
      */
     public static function isDisposableEmail(string $value): bool
     {
-        return ! self::validate('disposable_email', $value);
+        return !self::validate('disposable_email', $value);
     }
 
     public static function isValidUrl(string $value): bool
@@ -99,36 +73,20 @@ class Validator implements ValidatorFactoryInterface
     }
 
     /**
-     * Generic validation by type.
-     *
-     * @param string $type
-     * @param string $value
-     * @return bool
+     * Generic validation by type key.
      */
     public static function validate(string $type, string $value): bool
     {
-        $validator = self::create($type);
+        $validator = ValidatorFactory::create($type);
 
-        return $validator && $validator->validate($value);
+        return $validator !== null && $validator->validate($value);
     }
 
     /**
-     * @inheritdoc
+     * Proxy to ValidatorFactory::create().
      */
     public static function create(string $type): ?ValidatorInterface
     {
-        if (! array_key_exists($type, self::VALIDATOR_MAP)) {
-            return null;
-        }
-
-        $class = self::VALIDATOR_MAP[$type];
-
-        if ($type === 'disposable_email') {
-            $configPath = __DIR__ . '/../../../config/disposable_domains.php';
-            $provider = new FileDisposableEmailDomainProvider($configPath);
-            return new $class($provider);
-        }
-
-        return new $class();
+        return ValidatorFactory::create($type);
     }
 }

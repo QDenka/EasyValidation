@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Email;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 use QDenka\EasyValidation\Domain\Email\Provider\DisposableEmailDomainProviderInterface;
 
 /**

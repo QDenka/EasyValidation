@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Uuid;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Validates UUID v1–v5.

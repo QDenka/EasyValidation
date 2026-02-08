@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Number;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Class NumberValidator
@@ -14,7 +14,7 @@ class NumberValidator implements ValidatorInterface
     /**
      * Validate the given number value
      *
-     * @param mixed $value
+     * @param string $value
      * @return bool
      */
     public function validate(string $value): bool
