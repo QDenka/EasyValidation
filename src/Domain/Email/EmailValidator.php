@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Email;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Class EmailValidator
@@ -14,7 +14,7 @@ class EmailValidator implements ValidatorInterface
     /**
      * Validate the given email value
      *
-     * @param mixed $value
+     * @param string $value
      * @return bool
      */
     public function validate(string $value): bool

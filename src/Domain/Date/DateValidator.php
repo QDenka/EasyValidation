@@ -1,7 +1,7 @@
 <?php
 namespace QDenka\EasyValidation\Domain\Date;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Validates dates in a given format (default YYYY-MM-DD).

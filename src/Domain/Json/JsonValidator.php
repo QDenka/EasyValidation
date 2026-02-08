@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Json;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Checks if a string is valid JSON.
@@ -17,10 +17,6 @@ class JsonValidator implements ValidatorInterface
      */
     public function validate(string $value): bool
     {
-        if (! is_string($value)) {
-            return false;
-        
-        }
         json_decode($value);
         return json_last_error() === JSON_ERROR_NONE;
     }

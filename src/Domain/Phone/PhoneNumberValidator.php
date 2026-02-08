@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Phone;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Basic international phone number check (E.164).

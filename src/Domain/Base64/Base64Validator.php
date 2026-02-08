@@ -2,7 +2,7 @@
 
 namespace QDenka\EasyValidation\Domain\Base64;
 
-use QDenka\EasyValidation\Application\Validators\ValidatorInterface;
+use QDenka\EasyValidation\Domain\Contracts\ValidatorInterface;
 
 /**
  * Validates Base64-encoded strings.
